@@ -1,11 +1,23 @@
 # Citron Clicker 🍋
 
 <p align="center">
-  <img src="icon.png" alt="Citron Clicker Logo" width="128" height="128">
+  <img src="assets/logo.png" alt="Citron Clicker Logo" width="180">
 </p>
 
 <p align="center">
-  <strong>A premium, highly customizable auto-clicker and macro recorder built with C# and WPF (.NET 8).</strong>
+  <strong>A premium, highly customizable auto-clicker, macro recorder, and cloud profile suite built with C# and WPF (.NET 8).</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/f1etsch/CitronClicker/releases/latest">
+    <img src="https://img.shields.io/github/v/release/f1etsch/CitronClicker?style=for-the-badge&logo=github&color=E6005C" alt="Latest Release">
+  </a>
+  <a href="https://github.com/f1etsch/CitronClicker/releases/latest">
+    <img src="https://img.shields.io/github/downloads/f1etsch/CitronClicker/total?style=for-the-badge&color=238636&logo=github" alt="Total Downloads">
+  </a>
+  <a href="https://github.com/f1etsch/CitronClicker/issues">
+    <img src="https://img.shields.io/github/issues/f1etsch/CitronClicker?style=for-the-badge&color=C77DFF" alt="Issues">
+  </a>
 </p>
 
 <p align="center">
@@ -15,124 +27,65 @@
 
 ---
 
+## 📸 Screenshots / Скриншоты
+
+<p align="center">
+  <img src="assets/screenshot1.png" width="45%" alt="Main Interface & Left Clicker Module">
+  <img src="assets/screenshot2.png" width="45%" alt="Macro Recorder & Visual Editor">
+</p>
+<p align="center">
+  <img src="assets/screenshot3.png" width="45%" alt="System Settings & Language Picker">
+  <img src="assets/screenshot4.png" width="45%" alt="Cloud Storage & User Profile">
+</p>
+
+---
+
 ## English (English)
 
-Citron Clicker is a modern utility that combines high-precision mouse/keyboard clicking simulation with an advanced macro recording engine and a beautiful, fully customizable user interface. 
-
-Designed for gamers, power users, and developers, it offers low-level simulation bypasses, customizable cursor visual effects, and a custom UI styling engine (including support for background GIFs).
+Citron Clicker is a modern utility that combines high-precision mouse/keyboard clicking simulation with an advanced macro recording engine, active target window binding, cloud synchronization, and a dark cyberpunk WPF user interface.
 
 ### 🚀 Key Features
 
+* **☁️ Cloud Sync & Account Storage**: Save and restore all your profiles, hotkeys, themes, particle settings, and macros across devices using Cloud Account Profiles.
+* **🎯 Target Window Auto-Binding**: Automatically detects running application/browser windows for targeted clicking and macros.
+* **📷 Custom Profile Avatars**: Set custom PNG, JPG, or WebP avatar images rendered in your user profile and top header bar.
+* **📜 Macro Quick-Loader & Visual Inspector**: Scan local & cloud macros with 1-click loading and live event monitoring directly inside the floating Mini-HUD.
+* **🎨 Dark Cyberpunk Theme & Shader Glow**: Premium dark UI palette (`#121214` background, `#E6005C` primary accent, `#C77DFF` secondary glow) with soft neon drop shadows (`#FF1493`).
 * **3 Independent Clicker Modules**: Left Clicker, Right Clicker, and Custom Clicker running in parallel.
-* **Precise CPS Randomization**: Set minimum and maximum Clicks Per Second (1 to 60) to simulate human clicking.
-* **Custom Click Targets**: Combine mouse clicks (LMB/RMB) with custom keyboard key inputs (e.g. click Left Mouse and press 'E' simultaneously).
-* **Flexible Trigger Modes**: Choose between **Toggle** (press hotkey to start/stop) and **Hold** (runs only while the hotkey is held down).
+* **Precise CPS Randomization**: Set minimum and maximum Clicks Per Second (1 to 60) to simulate natural human clicking.
+* **Custom Keyboard & Mouse Targets**: Combine mouse clicks (LMB/RMB) with custom keyboard key inputs (e.g. click Left Mouse and press 'E' simultaneously).
+* **Flexible Trigger Modes**: Choose between **Toggle** (press hotkey to start/stop) and **Hold** (runs only while hotkey is held down).
 * **Human-like Jitter**: Simulates micro hand movements (mouse shake) to bypass clicker detection algorithms.
-* **Suspend/Pause Key**: Assign a global key that pauses clicking while held.
-* **Macro Recorder & Playback**:
-  * Records mouse cursor movements (optimized at 100Hz frequency to save file space), mouse clicks, and key presses.
-  * Save and load macros to/from `.json` files.
-  * Infinite looping playback option.
-  * Automated filter to exclude macro trigger hotkeys (F9/F10) from the recording.
-* **Cosmetic Particle Trail**: Customizable interactive particle canvas trailing your mouse cursor with options for size, lifetime, shape (Circle, Square, Triangle), and color modes (Mixed, Accent, Rainbow, Selection).
-* **UI Theme Customizer**: Real-time theme picker with 6 presets, HEX color code support for backgrounds, and custom background image/GIF support.
-* **GitHub Auto-Updates**: Seamless check for updates on startup, downloading new versions directly from GitHub releases.
-
----
-
-### 📸 Screenshots
-
-#### Left Clicker Settings & Jitter
-![Left Clicker Settings](assets/screenshots/left_click_settings.png)
-
-#### Custom Target Clicker (LMB + Custom Key)
-![Custom Clicker Settings](assets/screenshots/custom_click_settings.png)
-
-#### Macro Recorder & File Manager
-![Macro Settings](assets/screenshots/macro_settings.png)
-
-#### Interactive Particle Trail & Color Themes
-![Particle Settings](assets/screenshots/particle_settings.png)
-
-#### Localization & Custom Backgrounds
-![UI Settings](assets/screenshots/ui_settings.png)
-
----
-
-### 🛠️ Technical Details
-
-* **Language/Framework**: C#, WPF, .NET 8.0-windows
-* **System Hooks**: Uses low-level Windows Win32 API hooks (`SetWindowsHookEx` with `WH_KEYBOARD_LL` and `WH_MOUSE_LL`) to capture keys globally even when minimized or out of focus.
-* **Timing Precision**: Utilizes native `winmm.dll` via `timeBeginPeriod(1)` to enforce high-resolution 1ms thread sleep timing, ensuring highly stable and accurate CPS execution.
-* **Simulation Layer**: Simulates input via native `SendInput` method from `user32.dll` for smooth, low-latency, hardware-like simulation.
-
----
-
-### 📦 Build Instructions
-
-#### Prerequisites
-* [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-* Windows OS (due to Win32/WPF dependencies)
-
-#### Compilation
-To compile Citron Clicker into a standalone build, run:
-```powershell
-dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=false -o .\publish
-```
-Or use the provided PowerShell publish script in the root directory:
-```powershell
-.\publish.ps1
-```
+* **Cosmetic Particle Trail**: Interactive particle canvas trailing your mouse cursor with customizable size, lifetime, shape, and color modes.
+* **Floating Mini-HUD**: Dragable overlay showing live status, CPS, click counters, and macro controls.
 
 ---
 
 ## Русский (Russian)
 
-Citron Clicker — это современная утилита, сочетающая в себе высокоточную симуляцию кликов мыши и клавиатуры, мощный инструмент для записи макросов и стильный, гибко настраиваемый пользовательский интерфейс.
+Citron Clicker — это современная утилита v2.0.0, сочетающая в себе высокоточную симуляцию кликов мыши и клавиатуры, мощный модуль записи и проигрывания макросов, привязку к активным окнам, облачное хранилище профилей и темный Cyberpunk интерфейс.
 
 ### 🚀 Основные возможности
 
-* **3 независимых модуля**: Левый кликер, Правый кликер и Кастомный кликер, работающие параллельно.
-* **Точная рандомизация CPS**: Установка минимального и максимального количества кликов в секунду (от 1 до 60) для имитации человеческого нажатия.
-* **Кастомные цели клика**: Возможность комбинировать клики мыши (ЛКМ/ПКМ) с нажатием клавиш клавиатуры (например, клик ЛКМ + нажатие клавиши «E»).
-* **Гибкие режимы работы**: Переключатель между режимами **Переключатель** (клик по хоткею для старта/стопа) и **Удерживание** (работает только пока зажата горячая клавиша).
-* **Симуляция дрожания рук (Джиттер)**: Имитирует микро-движения мыши для обхода систем обнаружения кликеров.
-* **Клавиша паузы**: Назначение клавиши временной приостановки кликов при удержании.
-* **Запись и воспроизведение макросов**:
-  * Запись перемещения курсора (оптимизированная частота 100 Гц для экономии места), нажатий клавиш клавиатуры и кнопок мыши.
-  * Сохранение и загрузка макросов в формате `.json`.
-  * Режим бесконечного повтора при воспроизведении.
-  * Автоматический фильтр управляющих клавиш (F9/F10) из записи.
-* **Интерактивные частицы за курсором**: Настройка шлейфа частиц (размер, время жизни, форма: круг/квадрат/треугольник, цвет: радуга/акцент/смешанный).
-* **Кастомизация интерфейса**: Встроенный HEX-выбор цвета кнопок и фона, 6 готовых цветовых тем, а также поддержка установки кастомных картинок и анимированных GIF-файлов на фон.
-* **Автообновления через GitHub**: Встроенный модуль проверки новых версий напрямую из релизов GitHub при запуске приложения.
+* **☁️ Облачная синхронизация**: Полное сохранение и восстановление всех настроек, горячих клавиш, тем, шлейфа частиц и файлов макросов в облачном аккаунте.
+* **🎯 Авто-привязка к окнам приложений**: Выпадающий список активных окон и процессов пользователя для точечного кликинга и макросов.
+* **📷 Аватарка профиля**: Установка собственных картинок (PNG, JPG, WebP), отображаемых в профиле и шапке приложения.
+* **📜 Выбор и мониторинг макросов**: Быстрый сканер локальных и облачных макросов + вывод статуса макроса прямо в плавающий Mini-HUD.
+* **🎨 Неоновый дизайн Cyberpunk**: Стильная тёмная палитра (`#121214` фон, `#E6005C` акцент, `#C77DFF` фиолетовый блеск) с неоновым свечением элементов (`#FF1493`).
+* **3 независимых модуля**: Левый кликер, Правый кликер и Кастомный кликер.
+* **Точная рандомизация CPS**: Настройка диапазонов кликов в секунду (от 1 до 60).
+* **Кастомная привязка клавиш**: Комбинации кнопок мыши и любых клавиш клавиатуры.
+* **Джиттер (дрожание рук)**: Имитация микро-смещений курсора для обхода систем защиты.
+* **Плавающий Mini-HUD**: Виджет поверху всех окон с отображением CPS, кликов и кнопками макросов.
 
 ---
 
 ### 🛠️ Технические детали
 
 * **Язык / Фреймворк**: C#, WPF, .NET 8.0-windows
-* **Глобальный перехват ввода**: Использование низкоуровневых системных хуков Windows Win32 API (`SetWindowsHookEx` с `WH_KEYBOARD_LL` и `WH_MOUSE_LL`) для отслеживания клавиш даже в свернутом режиме.
-* **Высокая точность таймингов**: Использование библиотеки `winmm.dll` и функции `timeBeginPeriod(1)` для перевода системного таймера планировщика в режим 1 мс, что обеспечивает стабильный и точный CPS без просадок.
-* **Имитация ввода**: Отправка нажатий через метод `SendInput` библиотеки `user32.dll` для низкоуровневой и бесперебойной симуляции устройств ввода.
-
----
-
-### 📦 Инструкция по сборке
-
-#### Требования
-* [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-* Операционная система Windows (в связи с использованием Win32 API и WPF)
-
-#### Компиляция
-Для сборки исполняемого файла Citron Clicker выполните следующую команду в консоли:
-```powershell
-dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=false -o .\publish
-```
-Или воспользуйтесь готовым скриптом автоматической публикации:
-```powershell
-.\publish.ps1
-```
+* **Глобальный перехват ввода**: Низкоуровневые системные хуки Windows Win32 API (`SetWindowsHookEx` с `WH_KEYBOARD_LL` и `WH_MOUSE_LL`).
+* **Высокая точность таймингов**: Перевод системного таймера `winmm.dll` (`timeBeginPeriod(1)`) в режим 1 мс.
+* **Имитация ввода**: Отправка нажатий через метод `SendInput` библиотеки `user32.dll`.
 
 ---
 
